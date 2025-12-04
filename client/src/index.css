@@ -1,0 +1,306 @@
+@import "tailwindcss";
+@tailwind utilities;
+
+@theme {
+  /* -------------------------------------------------------------------------- */
+  /* FONTS (Google Fonts)                                                       */
+  /* -------------------------------------------------------------------------- */
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+
+  /* -------------------------------------------------------------------------- */
+  /* Border Radius                                                              */
+  /* -------------------------------------------------------------------------- */
+  --radius-lg: 1rem;
+  --radius-md: calc(1rem - 2px);
+  --radius-sm: calc(1rem - 6px);
+
+  /* -------------------------------------------------------------------------- */
+  /* PRIMARY (Purple) - Brand Core Color                                        */
+  /* -------------------------------------------------------------------------- */
+  --color-primary: #7C3AED;
+  --color-primary-50: #F5EEFF;
+  --color-primary-100: #E6D4FF;
+  --color-primary-200: #C3A6FF;
+  --color-primary-300: #A178FF;
+  --color-primary-400: #8B52F0;
+  --color-primary-500: #7C3AED;
+  --color-primary-600: #692FD1;
+  --color-primary-700: #5626AD;
+  --color-primary-800: #421C86;
+  --color-primary-900: #2D135C;
+  --color-primary-foreground: #ffffff;
+
+  /* -------------------------------------------------------------------------- */
+  /* SECONDARY (Red) - Action, Highlights, Alerts                              */
+  /* -------------------------------------------------------------------------- */
+  --color-secondary: #FF4D4F;
+  --color-secondary-50: #FFF1F1;
+  --color-secondary-100: #FFE1E1;
+  --color-secondary-200: #FFBDBD;
+  --color-secondary-300: #FF8A8A;
+  --color-secondary-400: #FF6767;
+  --color-secondary-500: #FF4D4F;
+  --color-secondary-600: #E63F41;
+  --color-secondary-700: #B92E30;
+  --color-secondary-800: #8C2022;
+  --color-secondary-900: #661516;
+  --color-secondary-foreground: #ffffff;
+
+  /* -------------------------------------------------------------------------- */
+  /* ACCENT (Cyan) - Neon Glow, Highlights                                     */
+  /* -------------------------------------------------------------------------- */
+  --color-accent: #22D3EE;
+  --color-accent-50: #ECFDFF;
+  --color-accent-100: #CFF9FF;
+  --color-accent-200: #A0F1FF;
+  --color-accent-300: #6BE9FA;
+  --color-accent-400: #36DFEF;
+  --color-accent-500: #22D3EE;
+  --color-accent-600: #1BB8D1;
+  --color-accent-700: #1691A4;
+  --color-accent-800: #116E7D;
+  --color-accent-900: #0C4B57;
+  --color-accent-foreground: #0D0D0D;
+
+  /* -------------------------------------------------------------------------- */
+  /* NEUTRALS - Dark (Default dark mode)                                       */
+  /* -------------------------------------------------------------------------- */
+  --color-dark: #0D0D0D;
+  --color-dark-50: #1A1A1A;
+  --color-dark-100: #262626;
+  --color-dark-200: #333333;
+  --color-dark-300: #404040;
+  --color-dark-400: #4D4D4D;
+  --color-dark-500: #595959;
+  --color-dark-600: #666666;
+  --color-dark-700: #737373;
+  --color-dark-800: #808080;
+  --color-dark-900: #8C8C8C;
+
+  /* -------------------------------------------------------------------------- */
+  /* NEUTRALS - Light                                                          */
+  /* -------------------------------------------------------------------------- */
+  --color-light: #F5F5F5;
+  --color-light-50: #ffffff;
+  --color-light-100: #fafafa;
+  --color-light-200: #f5f5f5;
+  --color-light-300: #ededed;
+  --color-light-400: #e0e0e0;
+  --color-light-500: #d1d1d1;
+  --color-light-600: #bfbfbf;
+  --color-light-700: #a1a1a1;
+  --color-light-800: #767676;
+  --color-light-900: #4a4a4a;
+
+  /* -------------------------------------------------------------------------- */
+  /* SUPPORT COLORS                                                            */
+  /* -------------------------------------------------------------------------- */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-info: #3B82F6;
+  --color-danger: #FF4D4F;
+
+  /* -------------------------------------------------------------------------- */
+  /* SEMANTIC COLORS (Dark Mode - Default)                                     */
+  /* -------------------------------------------------------------------------- */
+  --color-background: #0D0D0D;
+  --color-foreground: #F5F5F5;
+
+  --color-card: #1A1A1A;
+  --color-card-foreground: #F5F5F5;
+
+  --color-muted: #262626;
+  --color-muted-foreground: #a1a1a1;
+
+  --color-destructive: #FF4D4F;
+  --color-destructive-foreground: #ffffff;
+
+  --color-border: #333333;
+  --color-input: #333333;
+  --color-ring: #7C3AED;
+
+  /* -------------------------------------------------------------------------- */
+  /* CUSTOM SPACING TOKENS                                                     */
+  /* -------------------------------------------------------------------------- */
+  --spacing-0\.5: 0.125rem;
+  --spacing-1\.5: 0.375rem;
+  --spacing-2\.5: 0.625rem;
+  --spacing-3\.5: 0.875rem;
+}
+
+/* Light Mode (Optional Override - only when .light class is added) */
+.light {
+  --color-background: #ffffff;
+  --color-foreground: #0D0D0D;
+  --color-card: #ffffff;
+  --color-card-foreground: #0D0D0D;
+  --color-muted: #f5f5f5;
+  --color-muted-foreground: #737373;
+  --color-destructive: #FF4D4F;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e0e0e0;
+  --color-input: #e0e0e0;
+  --color-ring: #7C3AED;
+}
+
+/* Base Styles */
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+/* Make code elements use Fira Code by default (ligatures enabled where supported). */
+code,
+pre,
+kbd,
+samp,
+tt {
+  font-family: var(--font-mono);
+  font-variant-ligatures: contextual;
+  font-feature-settings: "liga" 1, "calt" 1;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Inline code styling */
+code {
+  background: color-mix(in srgb, var(--color-foreground) 5%, transparent);
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+
+/* Gradient text utility - Primary to Accent */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient text utility - Primary to Secondary */
+.text-gradient-warm {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effect utility */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.4);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 20px rgba(255, 77, 79, 0.4);
+}
+
+/* -------------------------------------------------------------------------- */
+/* GRADIENT UTILITIES                                        */
+/* -------------------------------------------------------------------------- */
+
+/* Gradient 1 — Hero Background (Purple to Cyan) */
+.bg-gradient-hero {
+  background: linear-gradient(135deg, #A259FF 0%, #00E5FF 100%);
+}
+
+/* Gradient 2 — Card Accent Glow (Pink radial) */
+.bg-gradient-card-glow {
+  background: radial-gradient(circle at top left, #FF47DA 0%, transparent 60%);
+}
+
+/* Gradient 3 — Button Glow (Green to Cyan) */
+.bg-gradient-button {
+  background: linear-gradient(90deg, #39FFB0 0%, #00E5FF 100%);
+}
+
+/* Text gradient for hero headings */
+.text-gradient-hero {
+  background: linear-gradient(135deg, #A259FF 0%, #00E5FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button with glow effect */
+.btn-glow {
+  background: linear-gradient(90deg, #39FFB0 0%, #00E5FF 100%);
+  box-shadow: 0 0 20px rgba(57, 255, 176, 0.4), 0 0 40px rgba(0, 229, 255, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(57, 255, 176, 0.6), 0 0 60px rgba(0, 229, 255, 0.3);
+}
+
+/* Card with accent glow overlay */
+.card-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top left, #FF47DA 0%, transparent 60%);
+  opacity: 0.15;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.card-glow:hover::before {
+  opacity: 0.25;
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius-lg) + 2px);
+  background: linear-gradient(135deg, #A259FF 0%, #00E5FF 50%, #FF47DA 100%);
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* Neon text glow */
+.text-neon {
+  text-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    0 0 40px currentColor;
+}
+
+
