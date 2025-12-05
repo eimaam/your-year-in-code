@@ -15,6 +15,11 @@ const userSchema = new Schema<IUserDocument>(
       lowercase: true,
       trim: true,
     },
+    bio: {
+      type: String,
+      default: '',
+      trim: true,
+    },
     fullName: {
       type: String,
       required: true,
@@ -37,13 +42,17 @@ const userSchema = new Schema<IUserDocument>(
       unique: true,
     },
     githubAccessToken: {
-      type: String,
-      select: false, // Don't include in queries by default
+      type: {
+        encrypted: { type: String, required: true },
+        iv: { type: String, required: true },
+        tag: { type: String, required: true },
+      },
+      select: false
     },
-    themePreference: {
+    hashedSessionId: {
       type: String,
-      enum: Object.values(ThemePreferenceEnum),
-      default: ThemePreferenceEnum.SYSTEM,
+      select: false,
+      default: null,
     },
     role: {
       type: String,
