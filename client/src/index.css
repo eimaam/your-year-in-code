@@ -108,7 +108,9 @@
   --color-background: #0D0D0D;
   --color-foreground: #F5F5F5;
 
-  --color-card: #1A1A1A;
+  --color-card-dark: #1A1A1A;
+  --color-card: #171122;
+  
   --color-card-foreground: #F5F5F5;
 
   --color-muted: #262626;
@@ -159,13 +161,16 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
 }
 
 /* Make code elements use Fira Code by default (ligatures enabled where supported). */
@@ -301,6 +306,20 @@ code {
     0 0 10px currentColor,
     0 0 20px currentColor,
     0 0 40px currentColor;
+}
+
+/* Button glow animation */
+@keyframes button-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--color-primary-400), 0 0 40px var(--color-primary-500);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--color-primary-400), 0 0 60px var(--color-primary-500), 0 0 80px var(--color-primary-600);
+  }
+}
+
+.animate-button-glow {
+  animation: button-glow 2s ease-in-out infinite;
 }
 
 
