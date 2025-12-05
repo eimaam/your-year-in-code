@@ -4,9 +4,9 @@ import express, { NextFunction, Request, Response } from "express"
 import cors from "cors"
 import { RateLimitMiddleware } from "./middlewares/rateLimit.middleware"
 // routes
-// import healthRoutes from "./routes/health.routes"
+import healthRoutes from "./routes/health.routes"
 // import userRoutes from "./routes/user.routes"
-// import authRoutes from "./routes/auth.routes"
+import authRoutes from "./routes/auth.routes"
 
 import { connectDatabase } from "./config/database"
 import cookieParser from "cookie-parser"
@@ -34,10 +34,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser()); // Parse cookies
 
 // API routes
-// app.use("/health", healthRoutes)
+app.use("/health", healthRoutes)
 
-// // auth
-// app.use("/api/v1/auth", authRoutes)
+// auth
+app.use("/api/v1/auth", authRoutes)
 
 // // user routes
 // app.use("/api/v1/users", userRoutes)
