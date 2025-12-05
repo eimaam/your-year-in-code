@@ -2,12 +2,8 @@ import { useState, useEffect } from 'react'
 import { ConfigProvider, theme } from 'antd'
 import { Route, Routes } from 'react-router-dom'
 import { AuthProvider } from '@/contexts/AuthContext'
-import { Button } from '@/components/ui/Button';
-// TODO: Create these pages for Your Year in Code
-// import { LandingPage } from '@/pages/LandingPage'
-// import { AuthPage } from '@/pages/AuthPage'
-// import { WrappedPage } from '@/pages/WrappedPage'
-// import { NotFoundPage } from '@/pages/NotFoundPage'
+import { LandingPage } from '@/pages/LandingPage'
+
 
 function App() {
   const [mounted, setMounted] = useState(false);
@@ -40,14 +36,7 @@ function App() {
     >
       <AuthProvider>
         <Routes>
-          {/* TODO: Add routes for Your Year in Code */}
-          <Route path="/" element={
-            <div className="min-h-screen w-full flex items-center justify-center bg-background text-foreground relative overflow-hidden">
-              {/* Background gradient glow */}
-              Building....
-            </div>
-          } />
-          
+          <Route path="/" element={<LandingPage />} />
           
         </Routes>
       </AuthProvider>
