@@ -1,4 +1,4 @@
-import {NodeEnv} from "@shared/types";
+import { NodeEnv } from "@shared/types";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -15,6 +15,12 @@ const jwt: { [key: string]: string } = {
   REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY || "7d",
 };
 
+// encryption
+const encryption = {
+  KEY: Buffer.from(process.env.ENCRYPTION_KEY!, "hex"),
+  ALGORITHM: "aes-256-gcm",
+}
+
 // Google OAuth
 const google = {
   CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "",
@@ -27,6 +33,7 @@ const github = {
   CLIENT_ID: process.env.GITHUB_CLIENT_ID || "",
   CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET || "",
   REDIRECT_URI: process.env.GITHUB_REDIRECT_URI || "http://localhost:8000/api/v1/auth/github/callback",
+  WEBHOOK_SECRET: process.env.GITHUB_WEBHOOK_SECRET || "",
 };
 
 // app config export
@@ -45,4 +52,5 @@ export const config = {
   google,
   github,
   app,
+  encryption
 };

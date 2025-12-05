@@ -14,15 +14,22 @@ export enum ThemePreferenceEnum {
   SYSTEM = 'system',
 }
 
+export interface IGithubToken {
+  encrypted: string;
+  iv: string;
+  tag: string;
+}
+
 export interface IUser {
   _id: string;
   username: string;
   fullName: string;
+  bio?: string;
   email: string;
   avatarUrl: string;
   githubId: string;
-  githubAccessToken?: string;
-  themePreference?: ThemePreferenceEnum;
+  githubAccessToken?: IGithubToken;
+  hashedSessionId?: string | null;
   role: UserRoleEnum;
   createdAt: Date;
   updatedAt: Date;
