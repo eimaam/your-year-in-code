@@ -1,5 +1,4 @@
-// TODO: Replace with actual logo
-// import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/year-in-code-logo.png";
 
 interface LogoProps {
   className?: string;
@@ -16,8 +15,6 @@ export const Logo: React.FC<LogoProps> = ({ className, size = 'medium' }) => {
   };
   className = className ? `${sizeClasses[size]} ${className}` : sizeClasses[size];
   return (
-    <div className={`flex items-center justify-center text-xl font-bold ${className}`}>
-      🎉
-    </div>
+    <img src={logo} alt="aboutly logo" className={`w-10 h-10 ${className}`} />
   );
 };
