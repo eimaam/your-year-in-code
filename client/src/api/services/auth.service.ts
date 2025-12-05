@@ -1,9 +1,8 @@
 import api from "../api";
 
 export const authService = {
-    login: async (credentials: { token: string }) => {
-        console.log('AuthService login called with credentials:', credentials)
-        const response = await api.post('/auth/login/google', credentials);
+    login: async () => {
+        const response = await api.get('/auth/login/github');
         return response.data;
     },
     logout: async () => {

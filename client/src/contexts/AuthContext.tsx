@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { AuthContextType, AuthState } from '@/types/auth.types';
-import { tokenStorage } from '../utils/tokenStorage';
 import { authService } from '../api/services/auth.service';
 import { message } from 'antd';
 import type { IUser } from '@shared/types';
@@ -19,77 +18,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     useEffect(() => {
         const initializeAuth = async () => {
-            const cachedUser = tokenStorage.getUser();
-
-            if (cachedUser) {
-                setAuthState({
-                    user: cachedUser,
-                    isAuthenticated: true,
-                    isLoading: false,
-                });
-            } else {
-                setAuthState(prev => ({
-                    ...prev,
-                    isLoading: true,
-                }));
-            }
-
             try {
                 const response = await authService.getCurrentUser();
 
                 if (response.success && response.data) {
-                    const freshUser = response.data;
-
-                    const userChanged = JSON.stringify(freshUser) !== JSON.stringify(cachedUser);
-
-                    if (userChanged) {
-                        tokenStorage.setUser(freshUser);
-                        setAuthState({
-                            user: freshUser,
-                            isAuthenticated: true,
-                            isLoading: false,
-                        });
-
-                        if (cachedUser?.fullName !== freshUser.fullName ||
-                            cachedUser?.username !== freshUser.username) {
-                            message.info('Profile updated', 2);
-                        }
-                    } else {
-                        setAuthState(prev => ({ ...prev, isLoading: false }));
-                    }
+                    setAuthState({
+                        user: response.data,
+                        isAuthenticated: true,
+                        isLoading: false,
+                    });
                 } else {
-                    tokenStorage.clearAll();
                     setAuthState({
                         user: null,
                         isAuthenticated: false,
                         isLoading: false,
                     });
-                    message.warning('Session expired. Please sign in again.');
                 }
             } catch (error: any) {
-                console.error('Background session validation failed:', error);
-
-                if (error.response?.status === 401) {
-                    tokenStorage.clearAll();
-                    setAuthState({
-                        user: null,
-                        isAuthenticated: false,
-                        isLoading: false,
-                    });
-                    message.error('Session expired. Please sign in again.');
-                } else {
-                    if (cachedUser) {
-                        setAuthState(prev => ({ ...prev, isLoading: false }));
-                        console.warn('Using cached profile data - could not verify session');
-                    } else {
-                        tokenStorage.clearAll();
-                        setAuthState({
-                            user: null,
-                            isAuthenticated: false,
-                            isLoading: false,
-                        });
-                    }
-                }
+                setAuthState({
+                    user: null,
+                    isAuthenticated: false,
+                    isLoading: false,
+                });
             }
         };
 
@@ -97,15 +47,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, []);
 
     const login = useCallback((user: IUser) => {
-        tokenStorage.setUser(user);
-
         setAuthState({
             user,
             isAuthenticated: true,
             isLoading: false,
         });
 
-        if (user) {
+        if (user.username) {
             navigate('/dashboard');
         } else {
             navigate('/onboarding');
@@ -118,8 +66,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         } catch (error) {
             console.error('Logout error:', error);
         } finally {
-            tokenStorage.clearAll();
-
             setAuthState({
                 user: null,
                 isAuthenticated: false,
@@ -134,12 +80,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setAuthState(prev => {
             if (!prev.user) return prev;
 
-            const updatedUser = { ...prev.user, ...updates };
-            tokenStorage.setUser(updatedUser);
-
             return {
                 ...prev,
-                user: updatedUser,
+                user: { ...prev.user, ...updates },
             };
         });
     }, []);
